@@ -1,8 +1,8 @@
 /**
- * title: 公用js文件
+ * Title: 公用js文件
  * Author: zhj
- * timer: 2023-6-6 10:56:55
- * PS: 长期更新
+ * StartTimer: 2023-6-6 10:56:55
+ * PS: 所有调用失败结果格式返回都为{ flag: flase, msg: 这是失败原因}
  */
 
 /**
@@ -34,21 +34,18 @@ export function envJudge() {
 export function distinctArr(val1, val2) {
   // 判断是否为数组
   if (!(val1 instanceof Array)) {
-    alert("要去重的数据不是个数组")
-    return
+    return { flag: false, msg: "要去重的数据不是个数组" }
   }
   // 判断数组是否为空
   if (!val1.length) {
-    alert("需要去重的数组为空")
-    return
+    return { flag: false, msg: "需要去重的数组为空" }
   }
   let flag = ""
   // 判断数组是对象数组还是普通数组（不考虑date类型了）
   if (val1.every((item) => typeof item != "object")) {
     flag = "arr"
   } else if (val1.some((item) => typeof item != "object")) {
-    alert("需要去重的数组数据格式不一致")
-    return
+    return { flag: false, msg: "需要去重的数组数据格式不一致" }
   } else {
     flag = "objarr"
   }
@@ -56,8 +53,7 @@ export function distinctArr(val1, val2) {
     return [...new Set(val1)]
   } else if (flag == "objarr") {
     if (!val2) {
-      alert("唯一标识符为空")
-      return
+      return { flag: false, msg: "唯一标识符为空" }
     }
     let obj = {}
     let arr = val1.reduce((pre, item) => {
@@ -84,8 +80,7 @@ export function distinctArr(val1, val2) {
 let downFlag = true
 export function downloadDFile(val1, val2, val3) {
   if (!downFlag) {
-    alert("正在下载，请稍后！")
-    return
+    return { flag: "loading", msg: "正在下载，请稍后！" }
   }
   const download = (str) => {
     const a = document.createElement("a")
@@ -113,11 +108,11 @@ export function downloadDFile(val1, val2, val3) {
 }
 
 /**
- * 限制只能输入数字
+ * 限制只能输入规定字符
  * 最好是配合输入框的oninput事件使用
  * @param {string} val1 需要操作的字符串
- * @param {number} val2 1（数字）||2（字母）||3（汉字）||4（数字字母）||5（字母汉字） 默认是1
- * @returns {string} 最终返回符合规则的字符串
+ * @param {number} val2 1（数字）||2（字母）||3（汉字）||4（数字字母）||5（字母汉字） 默认不做处理
+ * @returns {string} 返回最终符合规则的字符串
  */
 export function limitInput(val1, val2) {
   switch (val2) {
@@ -132,7 +127,7 @@ export function limitInput(val1, val2) {
     case 5:
       return val1.replace(/[\d]/g, "")
     default:
-      return val1.replace(/[^\d]/g, "")
+      return val1
   }
 }
 
@@ -142,9 +137,8 @@ export function limitInput(val1, val2) {
  * @returns {boolean} 返回校验结果
  */
 export function checkPhone(val) {
-  if (val.length != 11) {
-    alert("手机号码长度不是11位")
-    return
+  if (val.toString().length != 11) {
+    return { flag: false, msg: "手机号码长度不是11位" }
   }
   var re = /^1\d{10}$/
   if (re.test(val)) return true
@@ -163,30 +157,28 @@ export function checkEmail(val) {
 }
 
 /**
- * 字符串截取
+ * 域名地址参数截取
  * @param {string} val1 源字符串
  * @param {string} val2 所需要截取的字段名
  * @param {string} val3 截取字段结尾标识符不传默认为'&'
- * @returns 返回最终字段
+ * @returns {string} 返回最终字段
  */
 export function strIntercept(val1, val2, val3) {
   if (!val1) {
-    alert("请传入字符串")
-    return
+    return { flag: false, msg: "请传入字符串" }
   }
   if (!val2) {
-    alert("请传入您要截取的字段名")
-    return
+    return { flag: false, msg: "请传入您要截取的字段名" }
   }
   let url = decodeURI(val1) // 可能有中文
   let _url = "" // 传入字段索引之后的字符串
   let str = "" // 最终返回的字符串
   let augIdx = url.indexOf(val2) // 字段的索引
   if (augIdx == -1) {
-    alert("字符串中不存在您需要截取的字段")
-    return
+    alert("")
+    return { flag: false, msg: "字符串中不存在您需要截取的字段" }
   }
-  let l = val2.length // 字段的长度
+  let l = val2.length + 1 // 字段的长度(+1是加上'='符号)
   _url = url.substring(augIdx + l)
   let idx = _url.indexOf(!val3 ? "&" : val3) //结尾字段的索引
   if (idx != -1) str = _url.substring(0, idx)
@@ -208,3 +200,11 @@ export function passwordCheck(val) {
 // 四种
 // var regex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]){8,30}$/
 // var regex = new RegExp('(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]).{8,30}');
+
+/**
+ * 测试npm版本方法
+ * @returns {string} 版本测试
+ */
+export function testVersion() {
+  return "1.0.1"
+}

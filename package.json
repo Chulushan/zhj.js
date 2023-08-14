@@ -1,0 +1,19 @@
+{
+  "name": "zhj.js",
+  "version": "1.0.0",
+  "description": "zhj的个人公用js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chulushan/zhj.js"
+  },
+  "keywords": [
+    "zhj"
+  ],
+  "author": "zhj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chulushan/zhj.js/issues"
+  },
+  "homepage": "https://github.com/Chulushan/zhj.js#readme"
+}
