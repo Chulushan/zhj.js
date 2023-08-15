@@ -3,21 +3,21 @@
 > 基于js原生封装的js方法
 
 ## Install
-> npm install zhj.js
+> npm install zhj.js，[点击查看包地址](https://www.npmjs.com/package/zhj.js?activeTab=readme)
 
-## 方法说明
+## 方法调用说明
 > 所有调用失败结果格式返回都为{ flag: flase, msg: 这是失败原因}
 * envJudge
-	```
+	```js
 	/**
 	* 判断当前项目所处的环境
 	* 其中192.168一般是是本地ip
-	* @returns {string} 最终返回的字段local、bate、pro
+	* @returns {string} 最终返回的字段local、bate、pro，分别为本地，测试与生产
 	*/
 	function envJudge() {}
 	```
 * distinctArr
-	```
+	```js
 	/**
 	* 数组或数组对象去重
 	* @param {array} val1 需要去重的数组
@@ -27,7 +27,7 @@
 	function distinctArr(val1, val2) {}
 	```
 * downloadDFile
-	```
+	```js
 	/**
 	* 下载文件（只针对于单个文件，主要用于下载doc、xlsx或者pdf文件）
 	* 其他类型如图片、视频、音频也可以下载就是如果体积过大，页面没有提示会僵持住，体验不好
@@ -39,9 +39,9 @@
 	*/
 	let downFlag = true
 	function downloadDFile(val1, val2, val3) {}
-	```
+	```js
 * limitInput
-	```
+	```js
 	/**
 	* 限制只能输入规定字符
 	* 最好是配合输入框的oninput事件使用
@@ -52,7 +52,7 @@
 	function limitInput(val1, val2) {}
 	```
 * checkPhone
-	```
+	```js
 	/**
 	* 手机号校验
 	* @param {string | number} val 校验对象
@@ -61,7 +61,7 @@
 	function checkPhone(val)  {}
 	```
 * checkEmail
-	```
+	```js
 	/**
 	* 邮箱校验
 	* @param {string | number} val 校验对象
@@ -70,7 +70,7 @@
 	function checkEmail(val) {}
 	```
 * strIntercept
-	```
+	```js
 	/**
 	* 域名地址参数截取
 	* @param {string} val1 源字符串
