@@ -10,16 +10,15 @@
 * envJudge
 	```js
 	/**
-	* 判断当前项目所处的环境
-	* 其中192.168一般是是本地ip
-	* @returns {string} 最终返回的字段local、bate、pro，分别为本地，测试与生产
+	* @description 判断当前项目所处的环境（其中192.168一般是是本地ip）
+	* @returns {string} 最终返回的字段local、bate、pro
 	*/
 	function envJudge() {}
 	```
 * distinctArr
 	```js
 	/**
-	* 数组或数组对象去重
+	* @description 数组或数组对象去重
 	* @param {array} val1 需要去重的数组
 	* @param {string} val2 唯一标识字段
 	* @returns {array} 返回去重之后的数组
@@ -29,8 +28,8 @@
 * downloadDFile
 	```js
 	/**
-	* 下载文件（只针对于单个文件，主要用于下载doc、xlsx或者pdf文件）
-	* 其他类型如图片、视频、音频也可以下载就是如果体积过大，页面没有提示会僵持住，体验不好
+	* @description 下载文件（只针对于单个文件，主要用于下载doc、xlsx或者pdf文件）
+	* @description 其他类型如图片、视频、音频也可以下载就是如果体积过大，页面没有提示会僵持住，体验不好
 	* @downFlag 控制节流
 	* @param {string} val1 'flow'或'url' 流或者链接地址
 	* @param {string} val2 要操作的数据本体（url地址或流）
@@ -43,8 +42,7 @@
 * limitInput
 	```js
 	/**
-	* 限制只能输入规定字符
-	* 最好是配合输入框的oninput事件使用
+	* @description 限制只能输入规定字符（最好是配合输入框的oninput事件使用）
 	* @param {string} val1 需要操作的字符串
 	* @param {number} val2 1（数字）||2（字母）||3（汉字）||4（数字字母）||5（字母汉字） 默认不做处理
 	* @returns {string} 返回最终符合规则的字符串
@@ -54,7 +52,7 @@
 * checkPhone
 	```js
 	/**
-	* 手机号校验
+	* @description 手机号校验
 	* @param {string | number} val 校验对象
 	* @returns {boolean} 返回校验结果
 	*/
@@ -63,7 +61,7 @@
 * checkEmail
 	```js
 	/**
-	* 邮箱校验
+	* @description 邮箱校验
 	* @param {string | number} val 校验对象
 	* @returns {boolean} 返回校验结果
 	*/
@@ -72,7 +70,7 @@
 * strIntercept
 	```js
 	/**
-	* 域名地址参数截取
+	* @description 域名地址参数截取
 	* @param {string} val1 源字符串
 	* @param {string} val2 所需要截取的字段名
 	* @param {string} val3 截取字段结尾标识符不传默认为'&'
