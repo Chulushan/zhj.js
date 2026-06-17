@@ -78,3 +78,12 @@
 	*/
 	function strIntercept(val1, val2, val3) {}
 	```
+* deepClone
+	```js
+	/**
+	* @description 域名地址参数截取
+	* @param {string} val 需要做深拷贝的源数据
+	* @returns {string} 返回最终字段
+	*/
+	function deepClone(val) {}
+	```

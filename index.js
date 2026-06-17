@@ -187,7 +187,7 @@ export function strIntercept(val1, val2, val3) {
 /**
  * @description 截取域名所有参数
  * @param {string} val 源域名字符串
- * @returns {object} 返回所有参数结合s
+ * @returns {object} 返回所有参数结合
  */
 export function urlIntercept(val) {
   if (!val) return { flag: false, msg: "请传入字符串" }
@@ -212,9 +212,97 @@ export function passwordCheck(val) {
 // var regex = new RegExp('(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]).{8,30}');
 
 /**
+ * @description 深拷贝一个对象或数组，支持处理复杂的嵌套数据结构
+ * @param {*} data 需要深拷贝的数据
+ * @returns {object} {flag: boolean, msg: string, result: *} 返回拷贝结果
+ */
+export function deepClone(data) {
+  // 异常处理：检查数据是否为null或undefined
+  if (data === null || data === undefined) {
+    return { flag: false, msg: "拷贝数据不能为null或undefined" }
+  }
+
+  try {
+    // 处理基本数据类型（直接返回）
+    const baseTypes = ["number", "string", "boolean", "symbol"]
+    if (baseTypes.includes(typeof data)) {
+      return { flag: true, msg: "拷贝完成", result: data }
+    }
+
+    // 处理Date对象
+    if (data instanceof Date) {
+      return { flag: true, msg: "拷贝完成", result: new Date(data.getTime()) }
+    }
+
+    // 处理RegExp对象
+    if (data instanceof RegExp) {
+      return {
+        flag: true,
+        msg: "拷贝完成",
+        result: new RegExp(data.source, data.flags)
+      }
+    }
+
+    // 处理Map对象
+    if (data instanceof Map) {
+      const newMap = new Map()
+      data.forEach((value, key) => {
+        const clonedValue = deepClone(value)
+        newMap.set(key, clonedValue.flag ? clonedValue.result : value)
+      })
+      return { flag: true, msg: "拷贝完成", result: newMap }
+    }
+
+    // 处理Set对象
+    if (data instanceof Set) {
+      const newSet = new Set()
+      data.forEach((value) => {
+        const clonedValue = deepClone(value)
+        newSet.add(clonedValue.flag ? clonedValue.result : value)
+      })
+      return { flag: true, msg: "拷贝完成", result: newSet }
+    }
+
+    // 处理数组
+    if (Array.isArray(data)) {
+      const newArr = []
+      for (let i = 0; i < data.length; i++) {
+        const clonedItem = deepClone(data[i])
+        newArr[i] = clonedItem.flag ? clonedItem.result : data[i]
+      }
+      return { flag: true, msg: "拷贝完成", result: newArr }
+    }
+
+    // 处理普通对象
+    if (typeof data === "object") {
+      const newObj = {}
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          const clonedValue = deepClone(data[key])
+          newObj[key] = clonedValue.flag ? clonedValue.result : data[key]
+        }
+      }
+      return { flag: true, msg: "拷贝完成", result: newObj }
+    }
+
+    // 处理函数类型（无法拷贝，返回原函数引用）
+    if (typeof data === "function") {
+      return { flag: true, msg: "函数无法深拷贝，返回原函数引用", result: data }
+    }
+
+    return { flag: false, msg: "无法识别的数据类型" }
+  } catch (error) {
+    return {
+      flag: false,
+      msg: `深拷贝出错：${error.message}`
+    }
+  }
+}
+
+/**
  * @description 测试npm版本方法
  * @returns {string} 版本测试
  */
 export function testVersion() {
-  return "1.0.1"
+  return "1.1.1"
 }
