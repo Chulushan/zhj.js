@@ -2,6 +2,14 @@
 
 > 基于js原生封装的js方法
 
+## 发布
+- npm login（会提示去浏览器登录）
+- npm version patch	（只是修改了bug，只更改修订版本号+1）
+	npm version minor	（新增了功能，次版本号+1）
+	npm version major	（主版本更新，主版本号+1）
+	PS：执行了命令后无需自己去更改package中的version
+- npm publish
+
 ## Install
 > npm install zhj.js，[点击查看包地址](https://www.npmjs.com/package/zhj.js?activeTab=readme)
 
